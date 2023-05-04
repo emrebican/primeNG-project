@@ -13,9 +13,12 @@ import { HomeComponent } from './components/home/home.component';
 import { CardModule } from 'primeng/card';
 import { CardComponent } from './components/card/card.component';
 import { DividerModule } from 'primeng/divider';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutsComponent, HomeComponent, CardComponent],
+  declarations: [AppComponent, LayoutsComponent, HomeComponent, CardComponent, FormComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -25,7 +28,9 @@ import { DividerModule } from 'primeng/divider';
     ButtonModule,
     MenubarModule,
     CardModule,
-    DividerModule
+    DividerModule,
+    DynamicDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

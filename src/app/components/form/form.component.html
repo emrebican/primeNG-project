@@ -1,0 +1,49 @@
+<div class="card">
+  <form class="formgrid grid" [formGroup]="productForm">
+    <div class="field col-12 md:col-6">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        type="text"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        formControlName="title"
+      />
+    </div>
+    <div class="field col-12 md:col-6">
+      <label for="subtitle">SubTitle</label>
+      <input
+        id="subtitle"
+        type="text"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        formControlName="subTitle"
+      />
+    </div>
+    <div class="field col-12">
+      <label for="content">Content</label>
+      <textarea
+        id="content"
+        type="text"
+        rows="4"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        formControlName="content"
+      ></textarea>
+    </div>
+    <div class="field col-12">
+      <label for="imageUrl">Image Url</label>
+      <input
+        id="imageUrl"
+        type="text"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        formControlName="imageURL"
+      />
+    </div>
+    <div class="field col-12">
+      <p-button
+        styleClass="p-button-raised p-button-danger w-full"
+        label="Add"
+        (onClick)="onSubmit()"
+        [disabled]="productForm.invalid"
+      ></p-button>
+    </div>
+  </form>
+</div>
