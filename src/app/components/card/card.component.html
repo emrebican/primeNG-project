@@ -1,1 +1,25 @@
-<p>card works!</p>
+<p-toast></p-toast>
+<p-card
+  [header]="product.title"
+  [subheader]="product.subTitle"
+  [style]="{ width: '360px' }"
+  class="flex justify-content-center mb-4"
+>
+  <ng-template pTemplate="header">
+    <img alt="Card" [src]="product.imageURL" />
+  </ng-template>
+  <p>
+    {{ product.content }}
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button
+      [loading]="loading"
+      styleClass="p-button-raised p-button-warning w-full mt-4 flex justify-content-center gap-2"
+      (onClick)="onAddBasket(product)"
+    >
+      <i class="pi pi-shopping-bag" *ngIf="!loading"></i>
+      <span class="ml-2 font-bold" *ngIf="!loading">Add to Basket</span>
+      <span class="ml-2 font-bold" *ngIf="loading">Adding</span>
+    </p-button>
+  </ng-template>
+</p-card>

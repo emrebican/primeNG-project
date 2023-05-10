@@ -13,6 +13,8 @@ import { FormComponent } from '../form/form.component';
 // interfaces
 import { ProductInterface } from 'src/app/models/product.model';
 
+import { onShowToast } from 'src/app/tools/toastShow';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -23,7 +25,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   products: ProductInterface[] = [];
   ref!: DynamicDialogRef;
   SUB!: Subscription;
-  loading: boolean = false;
 
   constructor(
     public ds: DialogService,
@@ -34,7 +35,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.productsService.showToast.subscribe((res) => {
       if (res === true) {
         // toast
-        this.onShowToast(
+        onShowToast(
+          this.messageService,
           'info',
           'Product added to List',
           'Your Product is added to List',
@@ -70,38 +72,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.ref = this.ds.open(FormComponent, {
       header: 'Add a Product',
       width: '50vw'
-    });
-  }
-
-  onAddBasket(product: ProductInterface) {
-    this.loading = true;
-    setTimeout(() => (this.loading = false), 1500);
-
-    this.apiService.addToBasket(product).subscribe({
-      next: () => console.log('Product is added to Basket'),
-      error: (err) => console.log(err)
-    });
-
-    // toast
-    this.onShowToast(
-      'success',
-      'Add to Basket',
-      `${product.title} is added to your Basket`,
-      'pi-shopping-bag'
-    );
-  }
-
-  private onShowToast(
-    severity: string,
-    summary: string,
-    detail: string,
-    icon: string
-  ) {
-    this.messageService.add({
-      severity,
-      summary,
-      detail,
-      icon
     });
   }
 }
