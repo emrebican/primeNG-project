@@ -20,6 +20,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { BasketComponent } from './components/basket/basket.component';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { BasketComponent } from './components/basket/basket.component';
     DividerModule,
     DynamicDialogModule,
     BrowserAnimationsModule,
-    ToastModule
+    ToastModule,
+    DataViewModule,
+    TagModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

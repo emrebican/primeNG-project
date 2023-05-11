@@ -1,7 +1,7 @@
 import { OnInit, Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { MessageService } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { ApiService } from 'src/app/services/api.service';
 import { BasketService } from 'src/app/services/basket.service';
 
@@ -14,8 +14,12 @@ import { BasketInterface } from 'src/app/models/basket.model';
   providers: [MessageService]
 })
 export class BasketComponent implements OnInit, OnDestroy {
-  basket: BasketInterface[] = [];
+  basketProducts: BasketInterface[] = [];
   SUB!: Subscription;
+
+  sortOptions!: SelectItem[];
+  sortOrder!: number;
+  sortField!: string;
 
   constructor(
     private apiService: ApiService,
@@ -28,17 +32,35 @@ export class BasketComponent implements OnInit, OnDestroy {
       error: (err) => console.log(err)
     });
 
-    this.basket = this.basketService.getBasket();
+    this.basketProducts = this.basketService.getBasket();
 
     this.SUB = this.basketService.basketChanged.subscribe({
       next: (basket: BasketInterface[]) => {
-        this.basket = basket;
+        this.basketProducts = basket;
       },
       error: (err) => console.log(err)
     });
+
+    // Sort
+    this.sortOptions = [
+      { label: 'Price High to Low', value: '!price' },
+      { label: 'Price Low to High', value: 'price' }
+    ];
   }
 
   ngOnDestroy(): void {
     this.SUB.unsubscribe();
+  }
+
+  onSortChange(event: any) {
+    let value = event.value;
+
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
   }
 }

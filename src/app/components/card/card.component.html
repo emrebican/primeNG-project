@@ -3,14 +3,20 @@
   [header]="product.title"
   [subheader]="product.subTitle"
   [style]="{ width: '360px' }"
-  class="flex justify-content-center mb-4"
+  class="flex justify-content-center mb-4 relative"
 >
   <ng-template pTemplate="header">
     <img alt="Card" [src]="product.imageURL" />
   </ng-template>
-  <p>
-    {{ product.content }}
-  </p>
+  <div class="relative">
+    <p>
+      {{ product.content }}
+    </p>
+    <span class="flex align-items-center gap-2 absolute top-0 right-0">
+      <i class="pi pi-tag"></i>
+      <span class="text-2xl font-semibold">{{ '$' + product.price }}</span>
+    </span>
+  </div>
   <ng-template pTemplate="footer">
     <p-button
       [loading]="loading"
