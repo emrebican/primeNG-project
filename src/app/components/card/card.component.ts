@@ -16,27 +16,35 @@ export class CardComponent {
   @Input('productItem') product!: ProductInterface;
   loading: boolean = false;
 
-  constructor(
-    private apiService: ApiService,
-    private messageService: MessageService
-  ) {}
+  constructor(private apiService: ApiService, private ms: MessageService) {}
 
   onAddBasket(product: ProductInterface) {
     this.loading = true;
     setTimeout(() => (this.loading = false), 1500);
 
-    this.apiService.addToBasket(product).subscribe({
-      next: () => console.log('Product is added to Basket'),
-      error: (err) => console.log(err)
+    this.apiService.storeBasket(product).subscribe({
+      next: () => {
+        // success toast
+        onShowToast(
+          this.ms,
+          'success',
+          'Add to Basket',
+          `${product.title.toUpperCase()} is added to your Basket`,
+          'pi-shopping-bag'
+        );
+      },
+      error: (err) => {
+        // error toast
+        if (err.status === 500) {
+          onShowToast(
+            this.ms,
+            'error',
+            'ERROR',
+            'You already have this Product in your Basket!',
+            'pi-times-circle'
+          );
+        }
+      }
     });
-
-    // toast
-    onShowToast(
-      this.messageService,
-      'success',
-      'Add to Basket',
-      `${product.title.toUpperCase()} is added to your Basket`,
-      'pi-shopping-bag'
-    );
   }
 }

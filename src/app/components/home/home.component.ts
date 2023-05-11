@@ -23,20 +23,20 @@ import { onShowToast } from 'src/app/tools/toastShow';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   products: ProductInterface[] = [];
-  ref!: DynamicDialogRef;
   SUB!: Subscription;
+  ref!: DynamicDialogRef;
 
   constructor(
     public ds: DialogService,
+    private ms: MessageService,
     private productsService: ProductsService,
-    private apiService: ApiService,
-    private messageService: MessageService
+    private apiService: ApiService
   ) {
     this.productsService.showToast.subscribe((res) => {
       if (res === true) {
         // toast
         onShowToast(
-          this.messageService,
+          this.ms,
           'info',
           'Product added to List',
           'Your Product is added to List',

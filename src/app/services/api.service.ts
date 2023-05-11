@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductInterface } from '../models/product.model';
 import { tap } from 'rxjs';
 
 import { ProductsService } from './products.service';
+import { BasketService } from './basket.service';
+
+import { ProductInterface } from '../models/product.model';
+import { BasketInterface } from '../models/basket.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -11,9 +14,11 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private basketService: BasketService
   ) {}
 
+  // PRODUCTS
   fetchProducts() {
     return this.http
       .get<ProductInterface[]>(this.api + 'products')
@@ -21,13 +26,17 @@ export class ApiService {
   }
 
   storeProducts(product: ProductInterface) {
-    const products = this.productService.getProducts();
-    console.log('PR: ', products);
-
     return this.http.post<ProductInterface>(this.api + 'products', product);
   }
 
-  addToBasket(product: ProductInterface) {
+  // BASKET
+  fetchBasket() {
+    return this.http
+      .get<BasketInterface[]>(this.api + 'basket')
+      .pipe(tap((basket) => this.basketService.saveBasket(basket)));
+  }
+
+  storeBasket(product: ProductInterface) {
     return this.http.post<ProductInterface>(this.api + 'basket', product);
   }
 }

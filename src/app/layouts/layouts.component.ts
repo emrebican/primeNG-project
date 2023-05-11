@@ -13,8 +13,8 @@ export class LayoutsComponent implements OnInit {
     this.items = [
       {
         label: 'Basket',
-        icon: 'pi pi-fw pi-shopping-cart'
-        // routerLink: '/home'
+        icon: 'pi pi-fw pi-shopping-cart',
+        routerLink: '/basket'
       }
     ];
   }

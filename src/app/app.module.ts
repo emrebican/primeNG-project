@@ -19,6 +19,7 @@ import { DividerModule } from 'primeng/divider';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
+import { BasketComponent } from './components/basket/basket.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ToastModule } from 'primeng/toast';
     LayoutsComponent,
     HomeComponent,
     CardComponent,
-    FormComponent
+    FormComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,3 @@
-import { productInterface } from './product.model';
+import { ProductInterface } from './product.model';
 
-export interface BasketInterface {
-  product: productInterface;
-}
+export interface BasketInterface extends ProductInterface {}
