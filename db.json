@@ -59,12 +59,20 @@
   ],
   "basket": [
     {
-      "id": 1683899651157,
-      "title": "new product",
-      "subTitle": "new product subtitle",
-      "content": "new product content",
-      "imageURL": "https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1200&format=pjpg&exif=1&iptc=1",
-      "price": "45"
+      "id": 3,
+      "title": "Product 3 title",
+      "subTitle": "Product 3 subtitle",
+      "content": "Content for Product 3",
+      "price": 17,
+      "imageURL": "https://cdn.shopify.com/s/files/1/2303/2711/files/2_e822dae0-14df-4cb8-b145-ea4dc0966b34.jpg?v=1617059123"
+    },
+    {
+      "id": 2,
+      "title": "Product 2 title",
+      "subTitle": "Product 2 subtitle",
+      "content": "Content for Product 2",
+      "price": 52,
+      "imageURL": "https://www.lezzat.co.uk/wp-content/uploads/2021/03/Amazon-Product-Photography-Agency-UK-1.jpg"
     }
   ]
 }

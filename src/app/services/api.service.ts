@@ -32,7 +32,7 @@ export class ApiService {
   // BASKET
   fetchBasket() {
     return this.http
-      .get<BasketInterface[]>(this.api + 'basket')
+      .get<ProductInterface[]>(this.api + 'basket')
       .pipe(tap((basket) => this.basketService.saveBasket(basket)));
   }
 
@@ -41,6 +41,6 @@ export class ApiService {
   }
 
   deleteFromBasket(id: number) {
-    return this.http.delete(this.api + `basket/${id}`);
+    return this.http.delete<number>(this.api + `basket/${id}`);
   }
 }

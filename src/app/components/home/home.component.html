@@ -12,11 +12,17 @@
   <p-divider></p-divider>
 
   <!-- Products -->
-  <div class="grid">
-    <app-card
-      class="card col-12 sm:col-6 lg:col-4 xl:col-3"
-      *ngFor="let product of products"
-      [productItem]="product"
-    ></app-card>
-  </div>
+  <ng-container *ngIf="products.length > 0; else noProducts">
+    <div class="grid" *ngIf="products">
+      <app-card
+        class="card col-12 sm:col-6 lg:col-4 xl:col-3"
+        *ngFor="let product of products"
+        [productItem]="product"
+      ></app-card>
+    </div>
+  </ng-container>
+  <ng-template #noProducts>
+    <p class="text-500">There is no products!</p>
+  </ng-template>
+  <!--  -->
 </div>

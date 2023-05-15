@@ -22,6 +22,7 @@ import { ToastModule } from 'primeng/toast';
 import { BasketComponent } from './components/basket/basket.component';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DropdownModule } from 'primeng/dropdown';
     BrowserAnimationsModule,
     ToastModule,
     DataViewModule,
-    DropdownModule
+    DropdownModule,
+    BadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

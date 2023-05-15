@@ -12,14 +12,15 @@
     gap: 2rem;
     font-family: sans-serif;
     letter-spacing: 1.8px;
-    min-height: 20rem;
+    min-height: 19rem;
+    background-color: #f8f9fa;
 
     .total-price {
       height: 5.05rem;
       background: #f8f9fa;
       color: #343a40;
       border: 1px solid #dee2e6;
-      border-width: 1px 0 1px 0;
+      border-width: 1px 0 1px 1px;
       padding: 0.8rem 3rem;
       font-weight: 700;
       font-size: 18px;

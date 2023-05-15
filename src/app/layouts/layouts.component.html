@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card">
+  <!-- <div class="card">
     <p-menubar [model]="items">
       <ng-template pTemplate="start">
         <img
@@ -9,8 +9,30 @@
           routerLink="/home"
         />
       </ng-template>
+      <p-badge value="2"></p-badge>
     </p-menubar>
-  </div>
+  </div> -->
+
+  <!-- CUSTOM NAVBAR start -->
+  <nav class="flex gap-4 px-6 py-3 bg-gray-50">
+    <img
+      src="https://primefaces.org/cdn/primeng/images/primeng.svg"
+      height="40"
+      class="mr-2 cursor-pointer"
+      routerLink="/home"
+    />
+    <a routerLink="/basket">
+      <p-button
+        label="Basket"
+        icon="pi pi-shopping-cart"
+        styleClass="p-button-secondary p-button-text p-button-sm"
+        badge="{{ basketProducts.length }}"
+        badgeClass="p-badge-info"
+      ></p-button>
+    </a>
+  </nav>
+  <!-- CUSTOM NAVBAR end -->
+
   <div class="outlet">
     <router-outlet></router-outlet>
   </div>

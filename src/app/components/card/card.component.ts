@@ -20,10 +20,12 @@ export class CardComponent {
 
   onAddBasket(product: ProductInterface) {
     this.loading = true;
-    setTimeout(() => (this.loading = false), 1500);
+    setTimeout(() => (this.loading = false), 800);
 
     this.apiService.storeBasket(product).subscribe({
       next: () => {
+        this.apiService.fetchBasket().subscribe();
+
         // success toast
         onShowToast(
           this.ms,

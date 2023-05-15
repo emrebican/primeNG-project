@@ -17,7 +17,7 @@ import { BasketInterface } from 'src/app/models/basket.model';
 export class BasketComponent implements OnInit, OnDestroy {
   basketProducts: BasketInterface[] = [];
   SUB!: Subscription;
-  price: number = 0;
+  totalPrice: number = 0;
 
   sortOptions: SelectItem[] = [
     { label: 'Price High to Low', value: '!price' },
@@ -45,9 +45,9 @@ export class BasketComponent implements OnInit, OnDestroy {
         this.basketProducts = basket;
 
         // price
-        this.price = basket
+        this.totalPrice = basket
           .map((res) => res.price)
-          .reduce((acc, curr) => acc + curr, 0);
+          .reduce((acc, curr) => acc + Number(curr), 0);
       },
       error: (err) => console.log(err)
     });
