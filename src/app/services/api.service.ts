@@ -43,4 +43,11 @@ export class ApiService {
   deleteFromBasket(id: number) {
     return this.http.delete<number>(this.api + `basket/${id}`);
   }
+
+  resetBasket() {
+    // return this.http.delete(this.api + 'basket');
+
+    const basket: any = [];
+    return this.http.put(this.api + 'basket', basket);
+  }
 }

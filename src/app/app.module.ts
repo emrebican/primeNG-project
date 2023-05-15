@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LayoutsComponent } from './layouts/layouts.component';
@@ -17,12 +18,14 @@ import { CardModule } from 'primeng/card';
 import { CardComponent } from './components/card/card.component';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { BasketComponent } from './components/basket/basket.component';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { BadgeModule } from 'primeng/badge';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { BadgeModule } from 'primeng/badge';
     HomeComponent,
     CardComponent,
     FormComponent,
-    BasketComponent
+    BasketComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -39,17 +43,19 @@ import { BadgeModule } from 'primeng/badge';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     // ** primeNG Modules **
     ButtonModule,
     MenubarModule,
     CardModule,
     DividerModule,
     DynamicDialogModule,
-    BrowserAnimationsModule,
     ToastModule,
     DataViewModule,
     DropdownModule,
-    BadgeModule
+    BadgeModule,
+    ConfirmDialogModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

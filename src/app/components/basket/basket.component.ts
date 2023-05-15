@@ -1,9 +1,18 @@
 import { OnInit, Component, OnDestroy } from '@angular/core';
-import { MessageService, SelectItem } from 'primeng/api';
+import {
+  MessageService,
+  SelectItem,
+  ConfirmationService,
+  ConfirmEventType
+} from 'primeng/api';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { ApiService } from 'src/app/services/api.service';
 import { BasketService } from 'src/app/services/basket.service';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 import { onShowToast } from 'src/app/tools/toastShow';
 import { BasketInterface } from 'src/app/models/basket.model';
@@ -12,7 +21,7 @@ import { BasketInterface } from 'src/app/models/basket.model';
   selector: 'app-basket',
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService, DialogService]
 })
 export class BasketComponent implements OnInit, OnDestroy {
   basketProducts: BasketInterface[] = [];
@@ -25,11 +34,15 @@ export class BasketComponent implements OnInit, OnDestroy {
   ];
   sortOrder!: number;
   sortField!: string;
+  ref!: DynamicDialogRef;
 
   constructor(
     private ms: MessageService,
+    private cs: ConfirmationService,
+    public ds: DialogService,
     private apiService: ApiService,
-    private basketService: BasketService
+    private basketService: BasketService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +82,50 @@ export class BasketComponent implements OnInit, OnDestroy {
     }
   }
 
+  onConfirm() {
+    if (this.totalPrice !== 0) {
+      this.cs.confirm({
+        message: `Do you confirm <span class="font-bold text-lg">$${this.totalPrice}</span> payment?`,
+        icon: 'pi pi-paypal',
+        accept: () => {
+          this.apiService.resetBasket().subscribe();
+          this.showModal();
+
+          setTimeout(() => {
+            this.ref.close();
+            this.router.navigate(['/home']);
+          }, 4000);
+        },
+
+        reject: () => {
+          this.ms.add({
+            severity: 'warn',
+            summary: 'Cancelled',
+            detail: 'You have cancelled'
+          });
+        }
+        /* reject: (type: any) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.ms.add({
+              severity: 'error',
+              summary: 'Rejected',
+              detail: 'You have rejected'
+            });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.ms.add({
+              severity: 'warn',
+              summary: 'Cancelled',
+              detail: 'You have cancelled'
+            });
+            break;
+        }
+      } */
+      });
+    }
+  }
+
   onDeleteFromBasket(id: number) {
     this.apiService.deleteFromBasket(id).subscribe(() => {
       // success toast
@@ -82,6 +139,13 @@ export class BasketComponent implements OnInit, OnDestroy {
 
       // fetch Basket after deleting
       this.apiService.fetchBasket().subscribe();
+    });
+  }
+
+  private showModal() {
+    this.ref = this.ds.open(ConfirmationComponent, {
+      header: '',
+      width: '50vw'
     });
   }
 }

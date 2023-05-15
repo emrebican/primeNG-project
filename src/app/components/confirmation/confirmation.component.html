@@ -1,0 +1,27 @@
+<!-- Confirm -->
+<ng-container *ngIf="!loading; else showSpinner">
+  <div class="flex flex-column align-items-center">
+    <i class="text-8xl pi pi-check-circle inline text-green-500"></i>
+    <h2 class="text-700">Payment Confirmed!</h2>
+    <p class="text-500 text-lg">
+      Store had the payment and your products are going to be delivered soon.
+    </p>
+  </div>
+</ng-container>
+
+<!-- Spinner -->
+<ng-template #showSpinner>
+  <div class="flex flex-column align-items-center">
+    <p-progressSpinner
+      styleClass="w-5rem h-5rem"
+      strokeWidth="8"
+      fill="var(--surface-ground)"
+      animationDuration="1s"
+    ></p-progressSpinner>
+    <p
+      class="text-800 font-semibold text-lg scalein animation-duration-1000 animation-iteration-infinite"
+    >
+      Confirming...
+    </p>
+  </div>
+</ng-template>

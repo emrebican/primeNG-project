@@ -59,12 +59,12 @@
   ],
   "basket": [
     {
-      "id": 3,
-      "title": "Product 3 title",
-      "subTitle": "Product 3 subtitle",
-      "content": "Content for Product 3",
-      "price": 17,
-      "imageURL": "https://cdn.shopify.com/s/files/1/2303/2711/files/2_e822dae0-14df-4cb8-b145-ea4dc0966b34.jpg?v=1617059123"
+      "id": 1,
+      "title": "Product 1 title",
+      "subTitle": "Product 1 subtitle",
+      "content": "Content for Product 1",
+      "price": 34,
+      "imageURL": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHw%3D&w=1000&q=80"
     },
     {
       "id": 2,
