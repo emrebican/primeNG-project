@@ -1,10 +1,11 @@
 import { OnInit, Component, OnDestroy } from '@angular/core';
+import { MessageService, SelectItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
-import { MessageService, SelectItem } from 'primeng/api';
 import { ApiService } from 'src/app/services/api.service';
 import { BasketService } from 'src/app/services/basket.service';
 
+import { onShowToast } from 'src/app/tools/toastShow';
 import { BasketInterface } from 'src/app/models/basket.model';
 
 @Component({
@@ -16,12 +17,17 @@ import { BasketInterface } from 'src/app/models/basket.model';
 export class BasketComponent implements OnInit, OnDestroy {
   basketProducts: BasketInterface[] = [];
   SUB!: Subscription;
+  price: number = 0;
 
-  sortOptions!: SelectItem[];
+  sortOptions: SelectItem[] = [
+    { label: 'Price High to Low', value: '!price' },
+    { label: 'Price Low to High', value: 'price' }
+  ];
   sortOrder!: number;
   sortField!: string;
 
   constructor(
+    private ms: MessageService,
     private apiService: ApiService,
     private basketService: BasketService
   ) {}
@@ -37,15 +43,14 @@ export class BasketComponent implements OnInit, OnDestroy {
     this.SUB = this.basketService.basketChanged.subscribe({
       next: (basket: BasketInterface[]) => {
         this.basketProducts = basket;
+
+        // price
+        this.price = basket
+          .map((res) => res.price)
+          .reduce((acc, curr) => acc + curr, 0);
       },
       error: (err) => console.log(err)
     });
-
-    // Sort
-    this.sortOptions = [
-      { label: 'Price High to Low', value: '!price' },
-      { label: 'Price Low to High', value: 'price' }
-    ];
   }
 
   ngOnDestroy(): void {
@@ -62,5 +67,21 @@ export class BasketComponent implements OnInit, OnDestroy {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  onDeleteFromBasket(id: number) {
+    this.apiService.deleteFromBasket(id).subscribe(() => {
+      // success toast
+      onShowToast(
+        this.ms,
+        'warn',
+        'Deleted',
+        `Product is deleted from your Basket`,
+        'pi-exclamation-triangle'
+      );
+
+      // fetch Basket after deleting
+      this.apiService.fetchBasket().subscribe();
+    });
   }
 }

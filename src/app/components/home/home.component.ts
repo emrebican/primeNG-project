@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private apiService: ApiService
   ) {
+    // showToast Obs return true so show the toast
     this.productsService.showToast.subscribe((res) => {
       if (res === true) {
         // toast

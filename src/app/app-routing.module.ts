@@ -10,6 +10,7 @@ const routes: Routes = [
     path: '',
     component: LayoutsComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: '/home' },
       { path: 'home', component: HomeComponent },
       { path: 'basket', component: BasketComponent }
     ]

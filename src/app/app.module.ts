@@ -21,7 +21,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { BasketComponent } from './components/basket/basket.component';
 import { DataViewModule } from 'primeng/dataview';
-import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
@@ -39,7 +38,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    // primeNG Modules
+    // ** primeNG Modules **
     ButtonModule,
     MenubarModule,
     CardModule,
@@ -48,7 +47,6 @@ import { DropdownModule } from 'primeng/dropdown';
     BrowserAnimationsModule,
     ToastModule,
     DataViewModule,
-    TagModule,
     DropdownModule
   ],
   providers: [],

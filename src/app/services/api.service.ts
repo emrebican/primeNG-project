@@ -39,4 +39,8 @@ export class ApiService {
   storeBasket(product: ProductInterface) {
     return this.http.post<ProductInterface>(this.api + 'basket', product);
   }
+
+  deleteFromBasket(id: number) {
+    return this.http.delete(this.api + `basket/${id}`);
+  }
 }

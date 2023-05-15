@@ -23,7 +23,8 @@ export class FormComponent implements OnInit {
       title: [null, [Validators.required]],
       subTitle: [null, Validators.required],
       content: [null, Validators.required],
-      imageURL: [null, Validators.required]
+      imageURL: [null, Validators.required],
+      price: [null, Validators.required]
     });
   }
 

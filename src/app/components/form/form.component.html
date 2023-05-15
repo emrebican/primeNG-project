@@ -28,7 +28,7 @@
         formControlName="content"
       ></textarea>
     </div>
-    <div class="field col-12">
+    <div class="field col-12 md:col-9 lg:col-10">
       <label for="imageUrl">Image Url</label>
       <input
         id="imageUrl"
@@ -37,10 +37,19 @@
         formControlName="imageURL"
       />
     </div>
+    <div class="field col-12 md:col-3 lg:col-2">
+      <label for="imageUrl">Price</label>
+      <input
+        id="price"
+        type="text"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        formControlName="price"
+      />
+    </div>
     <div class="field col-12">
       <p-button
         styleClass="p-button-raised p-button-danger w-full"
-        label="Add"
+        label="Add Product"
         (onClick)="onSubmit()"
         [disabled]="productForm.invalid"
       ></p-button>

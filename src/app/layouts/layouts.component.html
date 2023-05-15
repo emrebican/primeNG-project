@@ -1,13 +1,20 @@
-<div class="card">
-  <p-menubar [model]="items">
-    <ng-template pTemplate="start">
-      <img
-        src="https://primefaces.org/cdn/primeng/images/primeng.svg"
-        height="40"
-        class="mr-2 cursor-pointer"
-        routerLink="/home"
-      />
-    </ng-template>
-  </p-menubar>
+<div class="container">
+  <div class="card">
+    <p-menubar [model]="items">
+      <ng-template pTemplate="start">
+        <img
+          src="https://primefaces.org/cdn/primeng/images/primeng.svg"
+          height="40"
+          class="mr-2 cursor-pointer"
+          routerLink="/home"
+        />
+      </ng-template>
+    </p-menubar>
+  </div>
+  <div class="outlet">
+    <router-outlet></router-outlet>
+  </div>
+  <p class="text-500 text-sm text-center p-3 h-3rem">
+    angular | e-commerce website
+  </p>
 </div>
-<router-outlet></router-outlet>
