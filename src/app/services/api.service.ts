@@ -29,10 +29,14 @@ export class ApiService {
     return this.http.post<ProductInterface>(this.api + 'products', product);
   }
 
+  removeFromProducts(id: number) {
+    return this.http.delete<any>(this.api + `products/${id}`);
+  }
+
   // BASKET
   fetchBasket() {
     return this.http
-      .get<ProductInterface[]>(this.api + 'basket')
+      .get<BasketInterface[]>(this.api + 'basket')
       .pipe(tap((basket) => this.basketService.saveBasket(basket)));
   }
 
@@ -41,13 +45,13 @@ export class ApiService {
   }
 
   deleteFromBasket(id: number) {
-    return this.http.delete<number>(this.api + `basket/${id}`);
+    return this.http.delete<any>(this.api + `basket/${id}`);
   }
 
   resetBasket() {
-    // return this.http.delete(this.api + 'basket');
+    return this.http.delete<any>(this.api + 'basket');
 
-    const basket: any = [];
-    return this.http.put(this.api + 'basket', basket);
+    /* const basket: any = [];
+    return this.http.put(this.api + 'basket', basket); */
   }
 }

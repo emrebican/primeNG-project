@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { ApiService } from 'src/app/services/api.service';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 import { ProductInterface } from 'src/app/models/product.model';
 import { onShowToast } from 'src/app/tools/toastShow';
@@ -10,13 +10,17 @@ import { onShowToast } from 'src/app/tools/toastShow';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class CardComponent {
   @Input('productItem') product!: ProductInterface;
   loading: boolean = false;
 
-  constructor(private apiService: ApiService, private ms: MessageService) {}
+  constructor(
+    private apiService: ApiService,
+    private ms: MessageService,
+    private cs: ConfirmationService
+  ) {}
 
   onAddBasket(product: ProductInterface) {
     this.loading = true;
@@ -46,6 +50,34 @@ export class CardComponent {
             'pi-times-circle'
           );
         }
+      }
+    });
+  }
+
+  onRemoveProduct(event: any, id: number) {
+    this.cs.confirm({
+      target: event.target,
+      message: 'Are you sure that you want to proceed?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.ms.add({
+          severity: 'info',
+          summary: 'Removed',
+          detail: 'Product removed from Product List'
+        });
+
+        setTimeout(() => {
+          this.apiService.removeFromProducts(id).subscribe(() => {
+            // delete from Basket
+            this.apiService.deleteFromBasket(id).subscribe();
+
+            // fetch basket after removing
+            this.apiService.fetchBasket().subscribe();
+
+            // fetch products after removing
+            this.apiService.fetchProducts().subscribe();
+          });
+        }, 1200);
       }
     });
   }

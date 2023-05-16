@@ -1,10 +1,5 @@
 import { OnInit, Component, OnDestroy } from '@angular/core';
-import {
-  MessageService,
-  SelectItem,
-  ConfirmationService,
-  ConfirmEventType
-} from 'primeng/api';
+import { MessageService, SelectItem, ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -88,8 +83,9 @@ export class BasketComponent implements OnInit, OnDestroy {
         message: `Do you confirm <span class="font-bold text-lg">$${this.totalPrice}</span> payment?`,
         icon: 'pi pi-paypal',
         accept: () => {
-          this.apiService.resetBasket().subscribe();
           this.showModal();
+
+          this.apiService.resetBasket().subscribe();
 
           setTimeout(() => {
             this.ref.close();
@@ -104,24 +100,6 @@ export class BasketComponent implements OnInit, OnDestroy {
             detail: 'You have cancelled'
           });
         }
-        /* reject: (type: any) => {
-        switch (type) {
-          case ConfirmEventType.REJECT:
-            this.ms.add({
-              severity: 'error',
-              summary: 'Rejected',
-              detail: 'You have rejected'
-            });
-            break;
-          case ConfirmEventType.CANCEL:
-            this.ms.add({
-              severity: 'warn',
-              summary: 'Cancelled',
-              detail: 'You have cancelled'
-            });
-            break;
-        }
-      } */
       });
     }
   }

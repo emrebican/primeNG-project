@@ -15,7 +15,7 @@
   <ng-container *ngIf="products.length > 0; else noProducts">
     <div class="grid" *ngIf="products">
       <app-card
-        class="card col-12 sm:col-6 lg:col-4 xl:col-3"
+        class="card col-12 md:col-6 lg:col-4 xl:col-3"
         *ngFor="let product of products"
         [productItem]="product"
       ></app-card>

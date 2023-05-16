@@ -5,6 +5,17 @@
   [style]="{ width: '360px' }"
   class="flex justify-content-center mb-4 relative"
 >
+  <!-- Remove Confirmation start -->
+  <div class="card flex justify-content-center gap-2">
+    <p-toast></p-toast>
+    <p-confirmPopup></p-confirmPopup>
+    <i
+      class="remove_btn pi pi pi-times-circle text-xl text-white border-circle cursor-pointer hover:text-red-400"
+      (click)="onRemoveProduct($event, product.id)"
+    ></i>
+  </div>
+  <!-- Remove Confirmation end -->
+
   <ng-template pTemplate="header">
     <img alt="Card" [src]="product.imageURL" />
   </ng-template>
