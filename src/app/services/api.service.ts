@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 import { ProductsService } from './products.service';
 import { BasketService } from './basket.service';
@@ -48,10 +48,9 @@ export class ApiService {
     return this.http.delete<any>(this.api + `basket/${id}`);
   }
 
-  resetBasket() {
-    return this.http.delete<any>(this.api + 'basket');
-
-    /* const basket: any = [];
-    return this.http.put(this.api + 'basket', basket); */
+  resetBasket(deleteIds: any) {
+    deleteIds.map((id: number) => {
+      return this.http.delete<any>(this.api + `basket/${id}`).subscribe();
+    });
   }
 }

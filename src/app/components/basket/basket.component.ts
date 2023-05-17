@@ -77,7 +77,10 @@ export class BasketComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* Confirm payment and reset Basket */
   onConfirm() {
+    const ids = this.basketProducts.map((item) => item.id);
+
     if (this.totalPrice !== 0) {
       this.cs.confirm({
         message: `Do you confirm <span class="font-bold text-lg">$${this.totalPrice}</span> payment?`,
@@ -85,7 +88,8 @@ export class BasketComponent implements OnInit, OnDestroy {
         accept: () => {
           this.showModal();
 
-          this.apiService.resetBasket().subscribe();
+          this.apiService.resetBasket(ids);
+          this.apiService.fetchBasket().subscribe();
 
           setTimeout(() => {
             this.ref.close();
@@ -96,8 +100,8 @@ export class BasketComponent implements OnInit, OnDestroy {
         reject: () => {
           this.ms.add({
             severity: 'warn',
-            summary: 'Cancelled',
-            detail: 'You have cancelled'
+            summary: 'Payment Cancelled',
+            detail: 'You have cancelled the Payment'
           });
         }
       });

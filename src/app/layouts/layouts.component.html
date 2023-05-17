@@ -26,7 +26,7 @@
         label="Basket"
         icon="pi pi-shopping-cart"
         styleClass="p-button-secondary p-button-text p-button-sm"
-        badge="{{ basketProducts.length }}"
+        badge="{{ basketProducts.length !== 0 ? basketProducts.length : null }}"
         badgeClass="p-badge-info"
       ></p-button>
     </a>
