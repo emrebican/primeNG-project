@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TooltipOptions } from 'primeng/tooltip';
 
 import { ApiService } from 'src/app/services/api.service';
 import { BasketService } from 'src/app/services/basket.service';
@@ -30,6 +31,15 @@ export class BasketComponent implements OnInit, OnDestroy {
   sortOrder!: number;
   sortField!: string;
   ref!: DynamicDialogRef;
+
+  // tooltip options
+  tooltipOptions: TooltipOptions = {
+    showDelay: 150,
+    autoHide: false,
+    tooltipEvent: 'hover',
+    tooltipPosition: 'left',
+    tooltipStyleClass: 'text-sm font-italic'
+  };
 
   constructor(
     private ms: MessageService,

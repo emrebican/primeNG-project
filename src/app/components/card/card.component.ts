@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-
-import { ApiService } from 'src/app/services/api.service';
+import { TooltipOptions } from 'primeng/tooltip';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
+import { ApiService } from 'src/app/services/api.service';
 import { ProductInterface } from 'src/app/models/product.model';
 import { onShowToast } from 'src/app/tools/toastShow';
 
@@ -15,6 +15,15 @@ import { onShowToast } from 'src/app/tools/toastShow';
 export class CardComponent {
   @Input('productItem') product!: ProductInterface;
   loading: boolean = false;
+
+  // tooltip options
+  tooltipOptions: TooltipOptions = {
+    showDelay: 150,
+    autoHide: false,
+    tooltipEvent: 'hover',
+    tooltipPosition: 'left',
+    tooltipStyleClass: 'text-sm font-italic'
+  };
 
   constructor(
     private apiService: ApiService,

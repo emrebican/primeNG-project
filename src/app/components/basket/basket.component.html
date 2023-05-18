@@ -56,6 +56,8 @@
                 styleClass="p-button-raised p-button-rounded p-button-danger"
                 [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
                 (onClick)="onDeleteFromBasket(product.id)"
+                pTooltip="Remove from Basket"
+                [tooltipOptions]="tooltipOptions"
               ></p-button>
             </div>
           </div>

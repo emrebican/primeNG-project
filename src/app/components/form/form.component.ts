@@ -11,6 +11,8 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class FormComponent implements OnInit {
   productForm!: FormGroup;
+  numberRegex = /^[0-9]*$/;
+  imgRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
 
   constructor(
     private fb: FormBuilder,
@@ -20,11 +22,14 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
-      title: [null, [Validators.required]],
-      subTitle: [null, Validators.required],
-      content: [null, Validators.required],
-      imageURL: [null, Validators.required],
-      price: [null, Validators.required]
+      title: [null, [Validators.required, Validators.maxLength(15)]],
+      subTitle: [null, [Validators.required, Validators.maxLength(20)]],
+      content: [null, [Validators.required, Validators.maxLength(20)]],
+      imageURL: [
+        null,
+        [Validators.required, Validators.pattern(this.imgRegex)]
+      ],
+      price: [null, [Validators.required, Validators.pattern(this.numberRegex)]]
     });
   }
 

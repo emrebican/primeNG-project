@@ -27,6 +27,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     BadgeModule,
     ConfirmDialogModule,
     ProgressSpinnerModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

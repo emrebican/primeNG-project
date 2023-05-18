@@ -7,10 +7,11 @@
 >
   <!-- Remove Confirmation start -->
   <div class="card flex justify-content-center gap-2">
-    <p-toast></p-toast>
     <p-confirmPopup></p-confirmPopup>
     <i
-      class="remove_btn pi pi pi-times-circle text-xl text-white border-circle cursor-pointer hover:text-red-400"
+      class="remove_btn pi pi-times-circle text-xl text-200 bg-gray-700 border-circle cursor-pointer hover:text-white"
+      pTooltip="Remove Product"
+      [tooltipOptions]="tooltipOptions"
       (click)="onRemoveProduct($event, product.id)"
     ></i>
   </div>

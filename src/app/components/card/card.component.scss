@@ -10,5 +10,12 @@ div {
 .remove_btn {
   position: absolute;
   top: 1rem;
-  right: 3rem;
+  right: 10%;
+}
+
+@media screen and (max-width: 767px) {
+  .remove_btn {
+    right: 50%;
+    transform: translateX(100%);
+  }
 }
